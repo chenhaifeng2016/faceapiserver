@@ -48,7 +48,14 @@ public class GroupController {
     public List<Group> getUpdatedGroups(String updateTime){
         System.out.println("updateTime ==================================== " + updateTime);
 
-        List<Group> groups = groupService.getUpdatedGroups(updateTime);
+        List<Group> groups = null;
+        if (updateTime == "") {
+            groups = groupService.selectAll();
+        }            else {
+            groups = groupService.getUpdatedGroups(updateTime);
+        }
+
+
       //  List<Group> groups = groupService.selectAll();
         return groups;
     }
@@ -75,8 +82,11 @@ public class GroupController {
 
 
     @RequestMapping(value="/group/{groupId}", method=RequestMethod.DELETE)
-    public Response delGroup(@PathVariable("groupId") Integer groupId){
+    public Response delGroup(@PathVariable("groupId") Integer groupID){
         Response response = new Response();
+
+
+        groupService.delGroup(String.valueOf(groupID));
         return response;
     }
 

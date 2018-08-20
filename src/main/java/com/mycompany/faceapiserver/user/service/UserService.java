@@ -26,7 +26,16 @@ public class UserService {
         return userDao.selectAll();
     }
 
+    public List<User> getUpdatedUsers(String updateTime) {
+        return userDao.getUpdatedUsers(updateTime);
+    }
+
+    public List<User> getAllUsers() {
+        return userDao.getAllUsers();
+    }
+
     public User login(String userid_phone_email, String password) {
         return userDao.login(userid_phone_email, password);
     }
+
 }

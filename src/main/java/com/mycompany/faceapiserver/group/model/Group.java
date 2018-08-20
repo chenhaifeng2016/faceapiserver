@@ -19,6 +19,8 @@ public class Group {
     private String groupID;
     private int status;
 
+    private String groupName;
+
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createTime;
 

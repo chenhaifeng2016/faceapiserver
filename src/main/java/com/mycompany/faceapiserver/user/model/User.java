@@ -11,6 +11,8 @@ public class User {
     private String phone;
     private String groupID;
     private int status;
+    private String userName;
+
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createTime;
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")

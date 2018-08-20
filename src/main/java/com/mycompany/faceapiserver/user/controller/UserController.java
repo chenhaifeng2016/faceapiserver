@@ -1,7 +1,7 @@
 package com.mycompany.faceapiserver.user.controller;
 
 import com.mycompany.faceapiserver.Response;
-import com.mycompany.faceapiserver.group.model.Group;
+
 import com.mycompany.faceapiserver.user.model.User;
 import com.mycompany.faceapiserver.user.service.UserService;
 import org.apache.ibatis.annotations.Param;
@@ -52,13 +52,15 @@ public class UserController {
             e.printStackTrace();
         }
 
+
         try {
             ret = userService.insertUser(user);
         } catch(DataAccessException exp) {
             ret = 0;
             System.out.println(exp);
         }
-        System.out.println("createGroup return ret is " + ret);
+        System.out.println("create user return ret is " + ret);
+
 
 
         Response response = new Response();
@@ -112,5 +114,21 @@ public class UserController {
 
         return users;
 
+    }
+
+    @RequestMapping(value="/user", params={"updateTime"}, method=RequestMethod.GET)
+    public List<User> getUpdatedUsers(String updateTime){
+        System.out.println("updateTime ==================================== " + updateTime);
+
+        List<User> users = null;
+        if (updateTime == "") {
+            users = userService.getAllUsers();
+        }            else {
+            users = userService.getUpdatedUsers(updateTime);
+        }
+
+
+        //  List<Group> groups = groupService.selectAll();
+        return users;
     }
 }
